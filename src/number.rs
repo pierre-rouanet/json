@@ -6,6 +6,9 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+#[cfg(not(feature = "std"))]
+use std::num::Float;
+
 use error::Error;
 use num_traits::NumCast;
 use serde::de::{self, Visitor, Unexpected};

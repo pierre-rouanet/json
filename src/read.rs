@@ -9,6 +9,9 @@
 use std::{char, cmp, io, str};
 use std::ops::Deref;
 
+#[cfg(not(feature = "std"))]
+use std::{String, Vec};
+
 use iter::LineColIterator;
 
 use super::error::{Error, ErrorCode, Result};

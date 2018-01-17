@@ -14,6 +14,9 @@ use std::slice;
 use std::str;
 use std::vec;
 
+#[cfg(not(feature = "std"))]
+use std::{String, Vec};
+
 use serde;
 use serde::de::{
     Deserialize,

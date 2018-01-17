@@ -13,6 +13,11 @@ use std::io;
 use std::num::FpCategory;
 use std::str;
 
+#[cfg(not(feature = "std"))]
+use std::{String, Vec};
+#[cfg(not(feature = "std"))]
+use std::num::Float;
+
 use serde::ser::{self, Impossible};
 use super::error::{Error, ErrorCode, Result};
 

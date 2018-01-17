@@ -6,6 +6,13 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+#[cfg(not(feature = "std"))]
+use std::{String, Vec};
+#[cfg(not(feature = "std"))]
+use std::string::ToString;
+#[cfg(not(feature = "std"))]
+use std::borrow::ToOwned;
+
 use serde::{self, Serialize};
 
 use error::{Error, ErrorCode};

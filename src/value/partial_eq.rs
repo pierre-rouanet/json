@@ -6,6 +6,9 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+#[cfg(not(feature = "std"))]
+use std::String;
+
 use super::Value;
 
 fn eq_i64(value: &Value, other: i64) -> bool {

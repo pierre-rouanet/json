@@ -16,11 +16,25 @@ travis-ci = { repository = "serde-rs/json" }
 appveyor = { repository = "serde-rs/json" }
 
 [dependencies]
-serde = "1.0"
-num-traits = "0.1.32"
 linked-hash-map = { version = "0.5", optional = true }
-itoa = "0.3"
-dtoa = "0.4"
+
+[dependencies.serde]
+git = "https://github.com/serde-rs/serde/"
+default-features = false
+features = ["alloc"]
+
+[dependencies.itoa]
+git = "https://github.com/pierre-rouanet/itoa/"
+
+[dependencies.dtoa]
+git = "https://github.com/pierre-rouanet/dtoa/"
+
+[dependencies.lite_io]
+git = "https://github.com/pierre-rouanet/lite_io"
+
+[dependencies.num-traits]
+git = "https://github.com/pierre-rouanet/num-traits"
+
 
 [dev-dependencies]
 compiletest_rs = "0.3"

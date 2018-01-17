@@ -8,6 +8,11 @@
 
 use std::borrow::Cow;
 
+#[cfg(not(feature = "std"))]
+use std::{String, Vec};
+#[cfg(not(feature = "std"))]
+use std::string::ToString;
+
 use super::Value;
 use map::Map;
 use number::Number;

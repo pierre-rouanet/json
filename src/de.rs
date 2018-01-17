@@ -12,6 +12,11 @@ use std::{i32, u64};
 use std::io;
 use std::marker::PhantomData;
 
+#[cfg(not(feature = "std"))]
+use std::num::Float;
+#[cfg(not(feature = "std"))]
+use std::Vec;
+
 use serde::de::{self, Expected, Unexpected};
 
 use super::error::{Error, ErrorCode, Result};

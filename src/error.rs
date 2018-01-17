@@ -8,10 +8,16 @@
 
 //! When serializing or deserializing JSON goes wrong.
 
+#[cfg(not(feature = "std"))]
+use std::string::ToString;
+
 use std::error;
 use std::fmt::{self, Debug, Display};
 use std::io;
 use std::result;
+
+#[cfg(not(feature = "std"))]
+use std::Box;
 
 use serde::de;
 use serde::ser;

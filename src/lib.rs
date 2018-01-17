@@ -338,7 +338,37 @@
     missing_docs_in_private_items,
 ))]
 
+#![cfg_attr(not(feature = "std"), no_std)]
+#![cfg_attr(not(feature = "std"), feature(alloc))]
+#![cfg_attr(not(feature = "std"), feature(core_float))]
+
 #![deny(missing_docs)]
+
+#[cfg(not(feature = "std"))]
+extern crate alloc;
+#[cfg(not(feature = "std"))]
+pub extern crate lite_io;
+#[cfg(not(feature = "std"))]
+mod std {
+    pub use alloc::{String, Vec, borrow, string, vec};
+    pub use alloc::boxed::Box;
+    pub mod collections {
+        pub use alloc::{BTreeMap, btree_map};
+    }
+    pub use core::*;
+    pub mod error {
+        pub trait Error {
+            fn description(&self) -> &str {
+                ""
+            }
+            fn cause(&self) -> Option<&Error> {
+                None
+            }
+        }
+        impl Error for ::std::io::Error {}
+    }
+    pub use lite_io as io;
+}
 
 extern crate num_traits;
 #[macro_use]

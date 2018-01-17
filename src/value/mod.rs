@@ -111,6 +111,9 @@ use std::fmt::{self, Debug};
 use std::i64;
 use std::str;
 
+#[cfg(not(feature = "std"))]
+use std::{String, Vec};
+
 use serde::ser::Serialize;
 use serde::de::DeserializeOwned;
 

@@ -22,6 +22,9 @@ use std::iter::FromIterator;
 use std::borrow::Borrow;
 use std::ops;
 
+#[cfg(not(feature = "std"))]
+use std::String;
+
 #[cfg(not(feature = "preserve_order"))]
 use std::collections::{BTreeMap, btree_map};
 

@@ -6,6 +6,11 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+#[cfg(not(feature = "std"))]
+use std::String;
+#[cfg(not(feature = "std"))]
+use std::borrow::ToOwned;
+
 use std::fmt;
 use std::ops;
 
@@ -151,6 +156,9 @@ where
 
 // Prevent users from implementing the Index trait.
 mod private {
+    #[cfg(not(feature = "std"))]
+    use std::String;
+
     pub trait Sealed {}
     impl Sealed for usize {}
     impl Sealed for str {}
