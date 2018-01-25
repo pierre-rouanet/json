@@ -681,7 +681,7 @@ impl Value {
     /// assert_eq!(v["c"].as_f64(), Some(-64.0));
     /// # }
     /// ```
-    pub fn as_f64(&self) -> Option<f64> {
+    pub fn as_f64(&self) -> Option<f32> {
         match *self {
             Value::Number(ref n) => n.as_f64(),
             _ => None,
