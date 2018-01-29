@@ -487,8 +487,6 @@ impl<'de, R: Read<'de>> Deserializer<R> {
         significand: u64,
         mut exponent: i32,
     ) -> Result<f64> {
-        panic!("f64 not supported!");
-        
         let mut f = significand as f64;
         loop {
             match POW10.get(exponent.abs() as usize) {
