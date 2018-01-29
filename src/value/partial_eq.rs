@@ -19,7 +19,7 @@ fn eq_u64(value: &Value, other: u64) -> bool {
     value.as_u64().map_or(false, |i| i == other)
 }
 
-fn eq_f64(value: &Value, other: f32) -> bool {
+fn eq_f64(value: &Value, other: f64) -> bool {
     value.as_f64().map_or(false, |i| i == other)
 }
 

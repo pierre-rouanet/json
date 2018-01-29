@@ -28,7 +28,7 @@ enum N {
     /// Always less than zero.
     NegInt(i64),
     /// Always finite.
-    Float(f32),
+    Float(f64),
 }
 
 impl Number {
@@ -191,7 +191,7 @@ impl Number {
     /// # }
     /// ```
     #[inline]
-    pub fn as_f64(&self) -> Option<f32> {
+    pub fn as_f64(&self) -> Option<f64> {
         match self.n {
             N::PosInt(n) => NumCast::from(n),
             N::NegInt(n) => NumCast::from(n),
@@ -212,7 +212,7 @@ impl Number {
     /// assert!(Number::from_f64(f64::NAN).is_none());
     /// ```
     #[inline]
-    pub fn from_f64(f: f32) -> Option<Number> {
+    pub fn from_f64(f: f64) -> Option<Number> {
         if f.is_finite() {
             Some(Number { n: N::Float(f) })
         } else {
@@ -258,7 +258,7 @@ impl Serialize for Number {
         match self.n {
             N::PosInt(i) => serializer.serialize_u64(i),
             N::NegInt(i) => serializer.serialize_i64(i),
-            N::Float(f) => serializer.serialize_f32(f),
+            N::Float(f) => serializer.serialize_f64(f),
         }
     }
 }
@@ -289,7 +289,7 @@ impl<'de> Deserialize<'de> for Number {
             }
 
             #[inline]
-            fn visit_f32<E>(self, value: f32) -> Result<Number, E>
+            fn visit_f64<E>(self, value: f64) -> Result<Number, E>
             where
                 E: de::Error,
             {
@@ -312,7 +312,7 @@ impl<'de> Deserializer<'de> for Number {
         match self.n {
             N::PosInt(i) => visitor.visit_u64(i),
             N::NegInt(i) => visitor.visit_i64(i),
-            N::Float(f) => visitor.visit_f32(f),
+            N::Float(f) => visitor.visit_f64(f),
         }
     }
 
@@ -334,7 +334,7 @@ impl<'de, 'a> Deserializer<'de> for &'a Number {
         match self.n {
             N::PosInt(i) => visitor.visit_u64(i),
             N::NegInt(i) => visitor.visit_i64(i),
-            N::Float(f) => visitor.visit_f32(f),
+            N::Float(f) => visitor.visit_f64(f),
         }
     }
 
@@ -385,7 +385,7 @@ impl Number {
         match self.n {
             N::PosInt(u) => Unexpected::Unsigned(u),
             N::NegInt(i) => Unexpected::Signed(i),
-            N::Float(f) => Unexpected::Float(f as f64),
+            N::Float(f) => Unexpected::Float(f),
         }
     }
 }

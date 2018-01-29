@@ -110,7 +110,7 @@ impl serde::Serializer for Serializer {
 
     #[inline]
     fn serialize_f64(self, value: f64) -> Result<Value, Error> {
-        Ok(Number::from_f64(value as f32).map_or(Value::Null, Value::Number))
+        Ok(Number::from_f64(value).map_or(Value::Null, Value::Number))
     }
 
     #[inline]

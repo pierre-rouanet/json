@@ -66,7 +66,7 @@ impl<'de> Deserialize<'de> for Value {
             }
 
             #[inline]
-            fn visit_f32<E>(self, value: f32) -> Result<Value, E> {
+            fn visit_f64<E>(self, value: f64) -> Result<Value, E> {
                 Ok(Number::from_f64(value).map_or(Value::Null, Value::Number))
             }
 
