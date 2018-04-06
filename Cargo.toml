@@ -20,6 +20,7 @@ linked-hash-map = { version = "0.5", optional = true }
 
 [dependencies.serde]
 git = "https://github.com/serde-rs/serde/"
+tag = "v1.0.34"
 default-features = false
 features = ["alloc"]
 
